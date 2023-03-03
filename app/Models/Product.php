@@ -32,7 +32,7 @@ class Product extends Model implements ModelsContract
      */
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class, 'category_id', 'id');
+        return $this->belongsToMany(Category::class, 'categories_products', self::PIVOT_KEY, Category::PIVOT_KEY);
     }
 
     /**
@@ -42,6 +42,6 @@ class Product extends Model implements ModelsContract
      */
     public function images(): BelongsToMany
     {
-        return $this->belongsToMany(Image::class, 'image_id', 'id');
+        return $this->belongsToMany(Image::class, 'products_images', self::PIVOT_KEY, Image::PIVOT_KEY);
     }
 }
