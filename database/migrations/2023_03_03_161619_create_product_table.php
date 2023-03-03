@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string(Product::FIELD_NAME, 100);
-            $table->text(Product::FIELD_DESCRITION);
+            $table->text(Product::FIELD_DESCRIPTION);
             $table->boolean(Product::FIELD_ENABLE)->default(false);
             $table->timestamps();
         });

@@ -19,7 +19,7 @@ class ProductFactory extends Factory
     {
         return [
             Product::FIELD_NAME => $this->faker->colorName,
-            Product::FIELD_DESCRITION => $this->faker->sentences(1, true),
+            Product::FIELD_DESCRIPTION => $this->faker->sentences(1, true),
             Product::FIELD_ENABLE => $this->faker->randomElement([true, false]),
         ];
     }

@@ -21,7 +21,7 @@ class Product extends Model implements ModelsContract
      */
     protected $fillable = [
         self::FIELD_NAME,
-        self::FIELD_DESCRITION,
+        self::FIELD_DESCRIPTION,
         self::FIELD_ENABLE,
     ];
 

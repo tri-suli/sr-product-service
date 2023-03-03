@@ -18,7 +18,7 @@ interface Product extends Enabling
      * 
      * @var string
      */
-    public CONST FIELD_DESCRITION = 'description';
+    public CONST FIELD_DESCRIPTION = 'description';
 
     /**
      * Describe the pivot key for this model instance.
