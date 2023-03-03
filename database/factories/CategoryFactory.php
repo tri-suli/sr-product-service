@@ -19,6 +19,7 @@ class CategoryFactory extends Factory
     {
         return [
             Category::FIELD_NAME => $this->faker->safeColorName,
+            Category::FIELD_ENABLE => $this->faker->randomElement([true, false]),
         ];
     }
 }
