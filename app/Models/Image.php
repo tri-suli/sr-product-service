@@ -32,6 +32,6 @@ class Image extends Model implements ModelsContract
      */
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'product_id', 'id');
+        return $this->belongsToMany(Product::class, 'products_images', self::PIVOT_KEY, Product::PIVOT_KEY);
     }
 }
