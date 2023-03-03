@@ -148,4 +148,21 @@ return [
 
     ],
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Database Seeders
+    |--------------------------------------------------------------------------
+    |
+    | in this section we'll describe how many records that should be generated
+    | by each of seeders entity's. If there's no keys specified in env
+    | for specific seeders then the records will not being generated
+    |
+    */
+
+    'seeders' => [
+        'categories' => env('DB_SEED_CATEGORIES', 0),
+        'images' => env('DB_SEED_IMAGES', 0),
+        'products' => env('DB_SEED_PRODUCTS', 0),
+    ],
 ];
