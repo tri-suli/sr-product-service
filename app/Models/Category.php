@@ -31,6 +31,6 @@ class Category extends Model implements ModelsContract
      */
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class, 'categories_products', self::PIVOT_KEY, Product::PIVOT_KEY);
     }
 }
