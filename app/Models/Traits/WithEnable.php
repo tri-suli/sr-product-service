@@ -2,10 +2,23 @@
 
 namespace App\Models\Traits;
 
+use App\Contracts\Models\Enabling;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
 trait WithEnable
 {
+    /**
+     * Query scope to only take records that are currently disabled
+     *
+     * @param   Builder $query
+     * @param   bool    $status
+     * @return  Builder
+     */
+    public function scopeEnable(Builder $query, bool $status): Builder
+    {
+        return $query->where('enable', $status);
+    }
+
     /**
      * Query scope to only take records that are currently disabled
      *
@@ -14,7 +27,7 @@ trait WithEnable
      */
     public function scopeDisabled(Builder $query): Builder
     {
-        return $query->where('enable', false);
+        return $this->scopeEnable($query, Enabling::IS_DISBALED);
     }
 
     /**
@@ -25,6 +38,6 @@ trait WithEnable
      */
     public function scopeEnabled(Builder $query): Builder
     {
-        return $query->where('enable', true);
+        return $this->scopeEnable($query, Enabling::IS_ENABLED);
     }
 }

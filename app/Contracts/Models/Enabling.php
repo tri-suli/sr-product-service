@@ -14,6 +14,22 @@ interface Enabling
     public CONST FIELD_ENABLE = 'enable';
 
     /**
+     * This constant is used to checking if the current model
+     * is enabled
+     * 
+     * @var bool
+     */
+    public CONST IS_ENABLED = true;
+
+    /**
+     * This constant is used to checking if the current model
+     * is disabled
+     * 
+     * @var bool
+     */
+    public CONST IS_DISBALED = false;
+
+    /**
      * Query scope to only take records that are currently disabled
      *
      * @param   Builder  $query
