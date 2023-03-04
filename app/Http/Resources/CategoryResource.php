@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class CategoryResource extends JsonResource
+{
+    use WithMeta;
+
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     */
+    public function toArray($request)
+    {
+        return parent::toArray($request);
+    }
+
+    /**
+     * Customize the outgoing response for the resource.
+     * 
+     * (@override)
+     * @return void
+     */
+    public function withResponse($request, $response)
+    {
+        if ($request->routeIs('api.category.store')) {
+            $response->setStatusCode(JsonResponse::HTTP_CREATED);
+        }
+    }
+}

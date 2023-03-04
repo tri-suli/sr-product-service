@@ -12,4 +12,30 @@ use Illuminate\Database\Eloquent\Collection;
  * @author Tri Suli Prasetyo <trisulipras@gmail.com>
  */
 final class CategoryService implements ServiceContract
+    /**
+     * Get one category by id
+     *
+     * @param   int     $id
+     * @param   array   $columns [default select all]
+     * @return  Category|null
+     */
+    public function findById(int $id, array $columns = ['*']): ?Category
+    {
+        return Category::select($columns)->find($id);
+    }
+
+    /**
+     * Insert a new category record into database and
+     * return the category object
+     *
+     * @param   array   $attributes
+     * @return  Category
+     */
+    public function store(array $attributes): Category
+    {
+        $entity = Category::create($attributes);
+
+        return $this->findById($entity->id);
+    }
+
 }

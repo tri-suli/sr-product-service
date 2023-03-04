@@ -14,6 +14,15 @@ class Category extends Model implements ModelsContract
     use WithEnable;
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'enable' => 'boolean',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * (@override)
