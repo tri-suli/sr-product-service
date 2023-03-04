@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Contracts\Models\Category;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
@@ -30,7 +31,7 @@ class CategoryResource extends JsonResource
      */
     public function withResponse($request, $response)
     {
-        if (($this->resource instanceof Category)) {
+        if (($this->resource instanceof Category) || ($this->resource instanceof Collection)) {
             $response->setStatusCode(
                 $request->routeIs('api.category.store')
                     ? JsonResponse::HTTP_CREATED

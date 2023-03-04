@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Contracts\Services\CategoryService as ServiceContract;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
+
 /**
  * Service to handle category resources
  * 
@@ -12,6 +13,18 @@ use Illuminate\Database\Eloquent\Collection;
  * @author Tri Suli Prasetyo <trisulipras@gmail.com>
  */
 final class CategoryService implements ServiceContract
+{
+    /**
+     * Get all categories record as an collection
+     *
+     * @param   array   $columns
+     * @return  Collection
+     */
+    public function all(array $columns = ['*']): Collection
+    {
+        return Category::all($columns);
+    }
+    
     /**
      * Get one category by id
      *

@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Collection;
 interface CategoryService
 {
     /**
+     * Get all categories record as an collection
+     *
+     * @param   array   $columns
+     * @return  Collection
+     */
+    public function all(array $columns = ['*']): Collection;
+    
+    /**
      * Get one category by id
      *
      * @param   int     $id
