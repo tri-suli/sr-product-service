@@ -24,5 +24,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api'], function (Router $routerGroup) {
     $routerGroup->prefix('categories')->name('.category')->group(function (Router $router) {
         $router->post('/', Categories\StoreController::class)->name('.store');
         $router->patch('{id}', Categories\UpdateController::class)->name('.update');
+        $router->delete('/', Categories\DeleteController::class)->name('.delete');
     });
 });

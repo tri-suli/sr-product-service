@@ -25,6 +25,17 @@ final class CategoryService implements ServiceContract
     }
 
     /**
+     * Delete a single category record from database
+     *
+     * @param   int     $id
+     * @return  bool
+     */
+    public function delete(int $id): bool
+    {
+        return $this->findById($id)->delete();
+    }
+
+    /**
      * Insert a new category record into database and
      * return the category object
      *

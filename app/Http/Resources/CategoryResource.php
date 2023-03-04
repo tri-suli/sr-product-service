@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Contracts\Models\Category;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Arr;
 
 class CategoryResource extends JsonResource
 {
@@ -36,7 +37,16 @@ class CategoryResource extends JsonResource
                     : JsonResponse::HTTP_OK
             );
         } else {
-            $response->setStatusCode(JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
+            if ($request->routeIs('api.category.delete')) {
+                $response->setStatusCode(
+                    Arr::has($this->resource, 'errors')
+                        ? JsonResponse::HTTP_UNPROCESSABLE_ENTITY
+                        : JsonResponse::HTTP_OK
+                );
+            } else {
+                $response->setStatusCode(JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
+            }
+
         }
     }
 }
