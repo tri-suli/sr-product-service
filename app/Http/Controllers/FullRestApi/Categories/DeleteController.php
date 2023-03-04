@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\FullRestApi\Categories;
 
-use App\Contracts\Services\CategoryService;
+use App\Contracts\Services\Entities\CategoryService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeleteCategoryRequest;
 use App\Http\Resources\CategoryResource;
