@@ -38,4 +38,20 @@ final class CategoryService implements ServiceContract
         return $this->findById($entity->id);
     }
 
+    /**
+     * Update a single category record and
+     * return the category object
+     *
+     * @param   int   $id
+     * @param   array $attributes
+     * @return  Category|null
+     */
+    public function update(int $id, array $attributes): ?Category
+    {
+        if ($this->findById($id)->update($attributes)) {
+            return $this->findById($id);
+        }
+
+        return null;
+    }
 }

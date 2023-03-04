@@ -25,4 +25,13 @@ interface CategoryService
      */
     public function store(array $attributes): Category;
 
+    /**
+     * Update a single category record and
+     * return the category object
+     *
+     * @param   int   $id
+     * @param   array $attributes
+     * @return  Category|null
+     */
+    public function update(int $id, array $attributes): ?Category;
 }

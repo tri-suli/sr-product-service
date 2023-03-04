@@ -29,12 +29,14 @@ class CategoryResource extends JsonResource
      */
     public function withResponse($request, $response)
     {
-        if ($request->routeIs('api.category.store')) {
-            if (($this->resource instanceof Category)) {
-                $response->setStatusCode(JsonResponse::HTTP_CREATED);
-            } else {
-                $response->setStatusCode(JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
-            }
+        if (($this->resource instanceof Category)) {
+            $response->setStatusCode(
+                $request->routeIs('api.category.store')
+                    ? JsonResponse::HTTP_CREATED
+                    : JsonResponse::HTTP_OK
+            );
+        } else {
+            $response->setStatusCode(JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
 }
