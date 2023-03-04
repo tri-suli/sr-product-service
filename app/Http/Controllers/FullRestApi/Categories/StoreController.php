@@ -4,8 +4,8 @@ namespace App\Http\Controllers\FullRestApi\Categories;
 
 use App\Contracts\Services\CategoryService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SaveCategoryRequest;
 use App\Http\Resources\CategoryResource;
-use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
@@ -19,10 +19,10 @@ class StoreController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  SaveCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(SaveCategoryRequest $request)
     {
         $result = $this->service->store($request->only('name', 'enable'));
 

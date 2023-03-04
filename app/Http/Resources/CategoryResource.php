@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Contracts\Models\Category;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -29,7 +30,11 @@ class CategoryResource extends JsonResource
     public function withResponse($request, $response)
     {
         if ($request->routeIs('api.category.store')) {
-            $response->setStatusCode(JsonResponse::HTTP_CREATED);
+            if (($this->resource instanceof Category)) {
+                $response->setStatusCode(JsonResponse::HTTP_CREATED);
+            } else {
+                $response->setStatusCode(JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
+            }
         }
     }
 }
