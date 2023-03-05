@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FullRestApi\Categories;
+use App\Http\Controllers\FullRestApi\Products;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,13 @@ Route::group(['prefix' => 'v1', 'as' => 'api'], function (Router $routerGroup) {
         $router->post('/', Categories\StoreController::class)->name('.store');
         $router->patch('{id}', Categories\UpdateController::class)->name('.update');
         $router->delete('/', Categories\DeleteController::class)->name('.delete');
+    });
+    
+    $routerGroup->prefix('products')->name('.product')->group(function (Router $router) {
+        $router->get('/', Products\ProductsController::class)->name('.all');
+        $router->get('find/{id}', Products\ShowController::class)->name('.show');
+        $router->post('/', Products\StoreController::class)->name('.store');
+        $router->patch('{id}', Products\UpdateController::class)->name('.update');
+        $router->delete('/', Products\DeleteController::class)->name('.delete');
     });
 });
