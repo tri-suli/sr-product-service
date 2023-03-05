@@ -12,7 +12,7 @@ abstract class EntityService implements ServiceContract
 
     public function __construct()
     {
-        $this->entity = app()->make($this->entityContract());    
+        $this->entity = app()->make($this->entityContract());
     }
 
     /**
