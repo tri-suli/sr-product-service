@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Categories\NegativeCases;
+namespace Tests\Feature\Products\NegativeCases;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
