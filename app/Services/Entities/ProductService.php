@@ -9,6 +9,7 @@ use App\Contracts\Services\Entities\ProductService as ServiceContract;
 use App\Services\Entities\EntityService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 /**
  * Service to handle product resources
@@ -82,5 +83,34 @@ final class ProductService extends EntityService implements ServiceContract
         }
 
         throw new Exception("Invalid Image given");
+    }
+
+    /**
+     * Update the specified product and re-sync the many-no-many retaionships
+     *
+     * @param   Product     $product
+     * @param   array       $attributes
+     * @return  Product|null
+     */
+    public function updateSyncs(Product $product, array $attributes): ?Product
+    {
+        $product = $this->update(
+            $product->id,
+            Arr::except($attributes, ['categories', 'images'])
+        );
+
+        if ($product instanceof Product) {
+            if (Arr::has($attributes, 'categories')) {
+                $product->categories()->sync($attributes['categories']);
+            }
+    
+            if (Arr::has($attributes, 'images')) {
+                $this->syncImages($product, $attributes['images']);
+            }
+
+            return $this->getEntities($product);
+        }
+
+        return null;
     }
 }

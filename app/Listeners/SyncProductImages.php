@@ -2,10 +2,12 @@
 
 namespace App\Listeners;
 
+use App\Contracts\Models\Product;
 use App\Contracts\Services\Entities\ImageService;
 use App\Contracts\Services\Entities\ProductService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Storage;
 
 class SyncProductImages
 {
@@ -48,8 +50,16 @@ class SyncProductImages
 
         if (request()->isMethod('post')) {
             $images = $this->imageService->storeMany("products/{$product->id}", $images);
-
             $this->productService->syncImages($product, $images);
+        } else if (request()->isMethod('patch')) {
+            $images = $this->imageService->storeMany("products/{$product->id}", $images);
+            if ($images->isNotEmpty()) {
+                $product = $this->productService->updateSyncs($product, ['images' => $images]);
+                if ($product instanceof Product) {
+                    Storage::delete("products/{$product->id}");
+                    $this->productService->syncImages($product, $images);
+                }
+            }
         }
     }
 }

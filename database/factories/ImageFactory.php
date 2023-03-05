@@ -19,7 +19,7 @@ class ImageFactory extends Factory
     {
         return [
             Image::FIELD_NAME => $this->faker->colorName,
-            Image::FIELD_FILE => $this->faker->file,
+            Image::FIELD_FILE => 'images/path_to_file/dummy.jpg',
             Image::FIELD_ENABLE => $this->faker->randomElement([true, false]),
         ];
     }

@@ -25,4 +25,13 @@ interface ProductService extends EntityService
      * @return  Product
      */
     public function syncImages(Product $product, $image): Product;
+
+    /**
+     * Update the specified product and re-sync the many-no-many retaionships
+     *
+     * @param   Product     $product
+     * @param   array       $relations
+     * @return  Product|null
+     */
+    public function updateSyncs(Product $product, array $relations): ?Product;
 }
