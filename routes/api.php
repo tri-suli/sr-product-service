@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1', 'as' => 'api'], function (Router $routerGroup) {
     $routerGroup->prefix('categories')->name('.category')->group(function (Router $router) {
         $router->get('/', Categories\ListController::class)->name('.list');
+        $router->get('find/{id}', Categories\ShowController::class)->name('.show');
         $router->post('/', Categories\StoreController::class)->name('.store');
         $router->patch('{id}', Categories\UpdateController::class)->name('.update');
         $router->delete('/', Categories\DeleteController::class)->name('.delete');
