@@ -25,6 +25,14 @@ interface ProductService extends EntityService
      * @return  Product
      */
     public function syncImages(Product $product, $image): Product;
+    
+    /**
+     * Delete product record from database along with the relationships
+     *
+     * @param   int     $id
+     * @return  bool
+     */
+    public function deleteSyncs(int $id): bool;
 
     /**
      * Update the specified product and re-sync the many-no-many retaionships

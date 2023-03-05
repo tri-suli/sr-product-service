@@ -86,6 +86,22 @@ final class ProductService extends EntityService implements ServiceContract
     }
 
     /**
+     * Delete product record from database along with the relationships
+     *
+     * @param   int     $id
+     * @return  bool
+     */
+    public function deleteSyncs(int $id): bool
+    {
+        $product = $this->findById($id);
+
+        $product->categories()->detach();
+        $product->images()->detach();
+
+        return $this->delete($product->id);
+    }
+
+    /**
      * Update the specified product and re-sync the many-no-many retaionships
      *
      * @param   Product     $product
