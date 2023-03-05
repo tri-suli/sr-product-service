@@ -31,6 +31,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api'], function (Router $routerGroup) {
     
     $routerGroup->prefix('products')->name('.product')->group(function (Router $router) {
         $router->get('/', Products\ProductsController::class)->name('.all');
+        $router->get('find/{id}', Products\ShowController::class)->name('.show');
         $router->post('/', Products\StoreController::class)->name('.store');
         $router->patch('{id}', Products\UpdateController::class)->name('.update');
         $router->delete('/', Products\DeleteController::class)->name('.delete');
